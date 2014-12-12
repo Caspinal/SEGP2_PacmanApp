@@ -14,10 +14,10 @@ var filepath = "/Users/connoraspinall/Documents/Maze.csv";// set up EXACT path h
 var sr = new File.OpenText(filepath);// open the file
 print(sr.ReadLine() + "\n"); // read  and print the first line for debug
 
-var x = sr.ReadLine();// assign to x 
+//var x = sr.ReadLine();// assign to x 
 
 var i : int = 0;
-
+var x = "MAZE";
 while(true){
 	
 if (x == "" || x == null){// if EOF then break
@@ -26,15 +26,16 @@ if (x == "" || x == null){// if EOF then break
 }else{
 	x = sr.ReadLine(); // reassign next line
 	//print("RES" + x + "\n");// print for debug
-	i++;
+	
 	//print("Array attempt: "+i + "\n"); // print for debug
 	Maze[i] = x;
+	i++;
 	}
  }
  
  sr.Close();// close file
 print("checking maze....");
-for(var j = 1; j < Maze.length-1; j++){
+for(var j = 0; j < Maze.length-1; j++){
 
 if (Maze[j] != null){
 	print(Maze[j]);
@@ -44,6 +45,7 @@ if (Maze[j] != null){
 }
    }
    
+   print(Maze[1]);
    
    if(MazeValidated == true){
    		
@@ -54,14 +56,14 @@ if (Maze[j] != null){
    		var hold : String = "Blank";
    		print("Entering the build state!");
    		
-   		for ( ypos = 0; ypos < Maze.length -1; ypos++){
+   		for ( ypos = 0; ypos < Maze.length-1; ypos++){
    			
    			xpos = 0;
    			
-   			if(Maze[ypos + 1] != null){
-   			hold = Maze[ypos + 1];
+   			if(Maze[ypos] != null){
+   			hold = Maze[ypos];
    			}else{print("NULL ARRAY VALUE >< FORCE BREAK");break;}
-   			
+   		
    			var SL : int = hold.Length;
    			
    			print(hold);
@@ -72,22 +74,27 @@ if (Maze[j] != null){
    					
    					xpos++; 
    					xpos2 = -SL;
-   					xpos2 = xpos2/2;
-   					xpos -= xpos2;
+   					//xpos2 = xpos2/2;
+   					//xpos -= xpos2;
    					print(xpos2);
    					
    					switch(nextchar){
    					
    					case 'p': print("pellet and path node");
+   					
    					var p : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+   					p.renderer.material = Resources.Load("yellow");
 					p.transform.position = Vector3((((xpos) - (SL)/2)),1, ypos);
    					break;
    					case 'w': print("wall");
    					var w : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Cube);
+   					w.renderer.material = Resources.Load("Blue");
 					w.transform.position = Vector3(((xpos) - (SL)/2), 1, ypos);
    					break;
    					case 'O': print("power pellet and path node");
+   					
    					var o : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+   					o.renderer.material = Resources.Load("orange");
 					o.transform.position = Vector3(((xpos) - (SL)/2), 1, ypos);
    					break;
    					default: print("unrecognized char");
