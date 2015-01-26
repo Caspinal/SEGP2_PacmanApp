@@ -5,16 +5,13 @@ var Maze = new Array();
 var MazeValidated = true;
 function Start () {
 
-var filepath = "/Users/connoraspinall/Documents/Maze.csv";// set up EXACT path here
+//var filepath = "/Users/connoraspinall/Documents/Maze.csv";// set up EXACT path here
+var filepath = "/Users/connoraspinall/Google Drive/SEGP2 - A6/Developer Resources/Maze.csv";
 
-//var link : WWW = new WWW("file://~/Users/connoraspinall/Documents/Maze.csv");
-//ield link;
-//print(link.url);
 
 var sr = new File.OpenText(filepath);// open the file
 print(sr.ReadLine() + "\n"); // read  and print the first line for debug
 
-//var x = sr.ReadLine();// assign to x 
 
 var i : int = 0;
 var x = "MAZE";
@@ -25,16 +22,15 @@ if (x == "" || x == null){// if EOF then break
 	break;
 }else{
 	x = sr.ReadLine(); // reassign next line
-	//print("RES" + x + "\n");// print for debug
-	
-	//print("Array attempt: "+i + "\n"); // print for debug
-	Maze[i] = x;
+	Maze[i] = x; // load into maze array
 	i++;
 	}
  }
  
  sr.Close();// close file
+
 print("checking maze....");
+// check each element in the array
 for(var j = 0; j < Maze.length-1; j++){
 
 if (Maze[j] != null){
@@ -45,7 +41,7 @@ if (Maze[j] != null){
 }
    }
    
-   print(Maze[1]);
+// if maze is valid start building
    
    if(MazeValidated == true){
    		
@@ -65,7 +61,7 @@ if (Maze[j] != null){
    			}else{print("NULL ARRAY VALUE >< FORCE BREAK");break;}
    		
    			var SL : int = hold.Length;
-   			
+   			xpos2 = SL;
    			print(hold);
    			for(xhold = 0; xhold < SL; xhold++){
    				
@@ -73,7 +69,7 @@ if (Maze[j] != null){
    					var nextchar : char = (hold[xhold]);
    					
    					xpos++; 
-   					xpos2 = -SL;
+   					
    					//xpos2 = xpos2/2;
    					//xpos -= xpos2;
    					print(xpos2);
@@ -84,34 +80,54 @@ if (Maze[j] != null){
    					
    					var p : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Sphere);
    					p.renderer.material = Resources.Load("yellow");
-					p.transform.position = Vector3((((xpos) - (SL)/2)),1, ypos);
+					p.transform.position = Vector3((xpos),1, ypos);
+					p.transform.localScale = Vector3(0.2,0.2,0.2);
+					p.name = "Pac-Dot";
    					break;
    					case 'w': print("wall");
    					var w : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Cube);
    					w.renderer.material = Resources.Load("Blue");
-					w.transform.position = Vector3(((xpos) - (SL)/2), 1, ypos);
+					w.transform.position = Vector3((xpos), 1, ypos);
+					w.name = "Wall";
    					break;
-   					case 'O': print("power pellet and path node");
+   					case 'o': print("power pellet and path node");
    					
    					var o : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Sphere);
    					o.renderer.material = Resources.Load("orange");
-					o.transform.position = Vector3(((xpos) - (SL)/2), 1, ypos);
+					o.transform.position = Vector3((xpos), 1, ypos);
+					o.transform.localScale = Vector3(0.3,0.3,0.3);
+					o.name = "PowerPellet";
    					break;
    					default: print("unrecognized char");
    					
    					
    					
+   				
+   					
+   					
+   					
    					}
    				
+   					
    				}
    			
    			}
    		
+   		var fXpos = 1;
+   		for(xhold = 0; xhold < ((SL+1)/2); xhold++){
    		
+   		var floor : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Cube);
+   		floor.renderer.material = Resources.Load("Dblue");
+		floor.transform.position = Vector3((fXpos), 0, ypos); // this Ypos is zpos??? fix this! 		
+   		floor.name = "Floor";
+   		fXpos++;
+   			}
    		}
    		
-   		
-   }
+   					
+ }
+  
+   
    print("Building complete...");
 }
 
