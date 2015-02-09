@@ -6,7 +6,7 @@ var MazeValidated = true;
 function Start () {
 
 //var filepath = "/Users/connoraspinall/Documents/Maze.csv";// set up EXACT path here
-var filepath = "/Users/connoraspinall/Google Drive/SEGP2 - A6/Developer Resources/Maze.csv";
+var filepath = "/Users/connoraspinall/Google Drive/SEGP2 - A6/Developer Resources/FILE.txt";
 
 
 var sr = new File.OpenText(filepath);// open the file
@@ -21,7 +21,8 @@ if (x == "" || x == null){// if EOF then break
 	
 	break;
 }else{
-	x = sr.ReadLine(); // reassign next line
+	x = sr.ReadLine();
+	// reassign next line
 	Maze[i] = x; // load into maze array
 	i++;
 	}
@@ -65,7 +66,7 @@ if (Maze[j] != null){
    			print(hold);
    			for(xhold = 0; xhold < SL; xhold++){
    				
-   				if (xhold % 2 == 0){
+   				//if (xhold % 2 == 0){
    					var nextchar : char = (hold[xhold]);
    					
    					xpos++; 
@@ -78,11 +79,11 @@ if (Maze[j] != null){
    					
    					case 'p': print("pellet and path node");
    					
-   					var p : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-   					p.renderer.material = Resources.Load("yellow");
-					p.transform.position = Vector3((xpos),1, ypos);
-					p.transform.localScale = Vector3(0.2,0.2,0.2);
-					p.name = "Pac-Dot";
+   					var p : GameObject  = Instantiate(Resources.Load("Pac-Dot", GameObject));
+ 					p.transform.position = Vector3((xpos),1, ypos);
+					
+					
+					
    					break;
    					case 'w': print("wall");
    					var w : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -106,7 +107,7 @@ if (Maze[j] != null){
    					
    					
    					
-   					}
+   					//}
    				
    					
    				}
