@@ -4,7 +4,7 @@ private var agent: NavMeshAgent;
 
 function Start () {
 
-agent = GetComponent.<NavMeshAgent>();
+
 
 }
 

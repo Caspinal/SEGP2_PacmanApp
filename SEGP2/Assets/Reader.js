@@ -3,6 +3,15 @@ import System.IO;
 
 var Maze = new Array();
 var MazeValidated = true;
+
+
+var MazeY = new Array();
+
+
+
+
+
+
 function Start () {
 
 //var filepath = "/Users/connoraspinall/Documents/Maze.csv";// set up EXACT path here
@@ -54,7 +63,7 @@ if (Maze[j] != null){
    		print("Entering the build state!");
    		
    		for ( ypos = 0; ypos < Maze.length-1; ypos++){
-   			
+   			var MazeX = new VectorX();
    			xpos = 0;
    			
    			if(Maze[ypos] != null){
@@ -82,6 +91,10 @@ if (Maze[j] != null){
    					var p : GameObject  = Instantiate(Resources.Load("Pac-Dot", GameObject));
  					p.transform.position = Vector3((xpos),1, ypos);
 					
+					MazeX.setVector(xpos,1,ypos);
+					MazeX.IncrementPointer();
+					
+					
 					
 					
    					break;
@@ -90,6 +103,10 @@ if (Maze[j] != null){
    					w.renderer.material = Resources.Load("Blue");
 					w.transform.position = Vector3((xpos), 1, ypos);
 					w.name = "Wall";
+					
+					
+					
+					
    					break;
    					case 'o': print("power pellet and path node");
    					
@@ -99,6 +116,10 @@ if (Maze[j] != null){
 					o.transform.localScale = Vector3(0.3,0.3,0.3);
 					o.name = "PowerPellet";
    					break;
+   					
+   					MazeX.setVector(xpos,1,ypos);
+					MazeX.IncrementPointer();
+					
    					default: print("unrecognized char");
    					
    					
@@ -114,8 +135,13 @@ if (Maze[j] != null){
    			
    			}
    		
+   		//MazeX.printXvector();			
+   		MazeY[ypos] = MazeX;
+   		MazeX.IncrementRowY();
+   		print("Current row" + MazeX.getRowY());
+   		
    		var fXpos = 1;
-   		for(xhold = 0; xhold < ((SL+1)/2); xhold++){
+   		for(xhold = 0; xhold < ((SL)); xhold++){
    		
    		var floor : GameObject  = GameObject.CreatePrimitive(PrimitiveType.Cube);
    		floor.renderer.material = Resources.Load("Dblue");
