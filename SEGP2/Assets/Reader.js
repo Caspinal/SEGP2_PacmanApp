@@ -18,7 +18,7 @@ function Start () {
 var filepath = "/Users/connoraspinall/Google Drive/SEGP2 - A6/Developer Resources/FILE.txt";
 
 
-var sr = new File.OpenText(filepath);// open the file
+var sr = new File.OpenText("FILE.txt");// open the file
 print(sr.ReadLine() + "\n"); // read  and print the first line for debug
 
 
