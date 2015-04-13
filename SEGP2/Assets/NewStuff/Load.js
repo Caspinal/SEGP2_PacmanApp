@@ -11,7 +11,7 @@ function Update () {
 if(Input.GetKey ("space")){
 
 //Transform.(0,0,90);
-Application.LoadLevel("untitled");
+Application.LoadLevel("test");
 
 
 

@@ -11,6 +11,7 @@ Then we apply the smoothed values to the transform's position.
 
 // The target we are following
 var target : Transform;
+var pacman : GameObject;
 // The distance in the x-z plane to the target
 var distance = 10.0;
 // the height we want the camera to be above the target
@@ -18,13 +19,21 @@ var height = 5.0;
 // How much we 
 var heightDamping = 2.0;
 var rotationDamping = 3.0;
-
+var trigger = true;
 // Place the script in the Camera-Control group in the component menu
 @script AddComponentMenu("Camera-Control/Smooth Follow")
 
+function Update(){
+if (trigger == true){
+pacman = GameObject.FindGameObjectWithTag("Player");
+target = pacman.transform;
+trigger = false;
+}
+}
 
 function LateUpdate () {
 	// Early out if we don't have a target
+	//target = transform.findObjectOfType("PacMan 1(Clone)");
 	if (!target)
 		return;
 	
