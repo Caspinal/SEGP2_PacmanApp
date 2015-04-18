@@ -17,6 +17,7 @@ public class GameLogic : MonoBehaviour {
 	int prevrc = 0;
 	int rc = 0;
 	int colourOption = 4;
+	public bool randomColour = false;
 	//public Vector3[] colourV = {new Vector3(255f,0f,0f), new Vector3(26f,255f,0f), new Vector3(4f,222f,255f), new Vector3(177f,34f,255f) , new Vector3(255f,130f,32f), new Vector3(114f,255f,199f)};
 	//public Color[] colour = new Color[] {(new Color(255,0,0)),(new Color(26,255,0)),(new Color(4,222,255)),(new Color(177,34,255)),(new Color(255,130,32)),(new Color(26,255,0))};
 
@@ -48,16 +49,20 @@ public class GameLogic : MonoBehaviour {
 	//bool trigger = true;
 
 	void LoadConfig(){
-		StreamReader ConfigInput = new StreamReader("config");
-		while((currentOption = ConfigInput.ReadLine())!= null){
-			if (currentOption == "Colour"){
-				currentOption = ConfigInput.ReadLine();
-				colourOption = int.Parse(currentOption);
+
+		if (randomColour = false) {
+			StreamReader ConfigInput = new StreamReader ("config");
+			while ((currentOption = ConfigInput.ReadLine())!= null) {
+			if (currentOption == "Colour") {
+			currentOption = ConfigInput.ReadLine ();
+			colourOption = int.Parse (currentOption);
+				}
 			}
+		ConfigInput.Close ();
+		}else if(true){
+			colourOption = Random.Range(0,8);
+
 		}
-		
-		
-		ConfigInput.Close();
 	}
 
 

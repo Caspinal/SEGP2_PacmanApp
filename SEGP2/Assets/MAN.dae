@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>connoraspinall</author>
+      <authoring_tool>Adobe Photoshop</authoring_tool>
+      <comments>1</comments>
+    </contributor>
+    <created>2015-04-16T21:27:13Z</created>
+    <modified>2015-04-16T21:27:13Z</modified>
+    <unit meter="0.001" name="meter"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_cameras>
+    <camera id="Default_Camera1" name="Default_Camera">
+      <optics>
+        <technique_common>
+          <perspective>
+            <yfov>30</yfov>
+            <aspect_ratio>2</aspect_ratio>
+            <znear>1</znear>
+            <zfar>1000</zfar>
+          </perspective>
+        </technique_common>
+      </optics>
+    </camera>
+  </library_cameras>
+  <library_lights>
+    <light id="Infinite_Light_2" name="Infinite_Light_1">
+      <technique_common>
+        <directional>
+          <color>1 1 1</color>
+        </directional>
+      </technique_common>
+      <extra>
+        <technique profile="MAX3D">
+          <aspect_ratio>1</aspect_ratio>
+          <overshoot>1</overshoot>
+          <decay_type>0</decay_type>
+          <decay_start>10</decay_start>
+          <use_near_attenuation>1</use_near_attenuation>
+          <use_far_attenuation>1</use_far_attenuation>
+          <near_attenuation_start>1</near_attenuation_start>
+          <near_attenuation_end>2</near_attenuation_end>
+          <far_attenuation_start>5</far_attenuation_start>
+          <far_attenuation_end>10</far_attenuation_end>
+        </technique>
+        <technique profile="FCOLLADA">
+          <constant_attenuation>1</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0</quadratic_attenuation>
+          <falloff_angle>5</falloff_angle>
+          <falloff_exponent>1</falloff_exponent>
+          <intensity>0.9</intensity>
+          <outer_cone>5</outer_cone>
+        </technique>
+      </extra>
+    </light>
+    <light id="Image_Based_Light_2" name="Image_Based_Light_1">
+      <technique_common>
+        <directional>
+          <color>0.1 0.1 0.1</color>
+        </directional>
+      </technique_common>
+      <extra>
+        <technique profile="FCOLLADA">
+          <constant_attenuation>1</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0</quadratic_attenuation>
+          <falloff_angle>5</falloff_angle>
+          <falloff_exponent>1</falloff_exponent>
+          <intensity>1</intensity>
+          <outer_cone>5</outer_cone>
+        </technique>
+      </extra>
+      <extra type="adobe_light_type">
+        <technique profile="ADOBE">
+          <type>
+            <imageBased>1</imageBased>
+          </type>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="Default_IBL.tif">
+      <init_from>./Default%20IBL.tif</init_from>
+      <extra>
+        <technique profile="MAYA">
+          <dgnode_type>kFile</dgnode_type>
+        </technique>
+      </extra>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="MAN_Front_Inflation_Material" name="MAN_Front_Inflation_Material">
+      <instance_effect url="#MAN_Front_Inflation_Material-fx"/>
+    </material>
+    <material id="MAN_Front_Bevel_Material" name="MAN_Front_Bevel_Material">
+      <instance_effect url="#MAN_Front_Bevel_Material-fx"/>
+    </material>
+    <material id="MAN_Extrusion_Material" name="MAN_Extrusion_Material">
+      <instance_effect url="#MAN_Extrusion_Material-fx"/>
+    </material>
+    <material id="MAN_Back_Bevel_Material" name="MAN_Back_Bevel_Material">
+      <instance_effect url="#MAN_Back_Bevel_Material-fx"/>
+    </material>
+    <material id="MAN_Back_Inflation_Material" name="MAN_Back_Inflation_Material">
+      <instance_effect url="#MAN_Back_Inflation_Material-fx"/>
+    </material>
+    <material id="Ground_Plane_Material" name="Ground_Plane_Material">
+      <instance_effect url="#Ground_Plane_Material-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="MAN_Front_Inflation_Material-fx" name="MAN_Front_Inflation_Material">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color>0.2 0.2 0.2 1</color>
+            </specular>
+            <shininess>
+              <float>0.2</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>0</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA"/>
+          </extra>
+        </technique>
+        <extra type="material_overlay">
+          <technique profile="ADOBE">
+            <colors>
+              <diffuse_color>0 0 0</diffuse_color>
+              <specular_color>0.2 0.2 0.2</specular_color>
+              <reflectivity_factor>0</reflectivity_factor>
+              <shininess>0.2</shininess>
+              <roughness>0</roughness>
+            </colors>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>1</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="MAN_Front_Bevel_Material-fx" name="MAN_Front_Bevel_Material">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color>0.2 0.2 0.2 1</color>
+            </specular>
+            <shininess>
+              <float>0.2</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>0</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA"/>
+          </extra>
+        </technique>
+        <extra type="material_overlay">
+          <technique profile="ADOBE">
+            <colors>
+              <diffuse_color>0 0 0</diffuse_color>
+              <specular_color>0.2 0.2 0.2</specular_color>
+              <reflectivity_factor>0</reflectivity_factor>
+              <shininess>0.2</shininess>
+              <roughness>0</roughness>
+            </colors>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>1</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="MAN_Extrusion_Material-fx" name="MAN_Extrusion_Material">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color>0.2 0.2 0.2 1</color>
+            </specular>
+            <shininess>
+              <float>0.2</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>0</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA"/>
+          </extra>
+        </technique>
+        <extra type="material_overlay">
+          <technique profile="ADOBE">
+            <colors>
+              <diffuse_color>0 0 0</diffuse_color>
+              <specular_color>0.2 0.2 0.2</specular_color>
+              <reflectivity_factor>0</reflectivity_factor>
+              <shininess>0.2</shininess>
+              <roughness>0</roughness>
+            </colors>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>1</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="MAN_Back_Bevel_Material-fx" name="MAN_Back_Bevel_Material">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color>0.2 0.2 0.2 1</color>
+            </specular>
+            <shininess>
+              <float>0.2</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>0</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA"/>
+          </extra>
+        </technique>
+        <extra type="material_overlay">
+          <technique profile="ADOBE">
+            <colors>
+              <diffuse_color>0 0 0</diffuse_color>
+              <specular_color>0.2 0.2 0.2</specular_color>
+              <reflectivity_factor>0</reflectivity_factor>
+              <shininess>0.2</shininess>
+              <roughness>0</roughness>
+            </colors>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>1</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="MAN_Back_Inflation_Material-fx" name="MAN_Back_Inflation_Material">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color>0.2 0.2 0.2 1</color>
+            </specular>
+            <shininess>
+              <float>0.2</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>0</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA"/>
+          </extra>
+        </technique>
+        <extra type="material_overlay">
+          <technique profile="ADOBE">
+            <colors>
+              <diffuse_color>0 0 0</diffuse_color>
+              <specular_color>0.2 0.2 0.2</specular_color>
+              <reflectivity_factor>0</reflectivity_factor>
+              <shininess>0.2</shininess>
+              <roughness>0</roughness>
+            </colors>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>1</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Ground_Plane_Material-fx" name="Ground_Plane_Material">
+      <profile_COMMON>
+        <newparam sid="Default_IBL_tif-surface">
+          <surface type="2D">
+            <init_from>Default_IBL.tif</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="Default_IBL_tif-sampler">
+          <sampler2D>
+            <source>Default_IBL_tif-surface</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>WRAP</wrap_t>
+            <minfilter>NONE</minfilter>
+            <magfilter>NONE</magfilter>
+            <mipfilter>NONE</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>1 1 1 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0 1</color>
+            </diffuse>
+            <specular>
+              <color>1 1 1 1</color>
+            </specular>
+            <shininess>
+              <float>0.2</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>0</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>0.6</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA">
+              <imagebased>
+                <texture texture="Default_IBL_tif-sampler" texcoord="UVSET0">
+                  <extra>
+                    <technique profile="MAX3D">
+                      <amount>1</amount>
+                    </technique>
+                  </extra>
+                  <extra type="texture_offset">
+                    <technique profile="ADOBE">
+                      <offsets>
+                        <offsetu>0</offsetu>
+                        <offsetv>0</offsetv>
+                        <scaleu>1</scaleu>
+                        <scalev>1</scalev>
+                        <angle>0</angle>
+                      </offsets>
+                    </technique>
+                  </extra>
+                </texture>
+              </imagebased>
+            </technique>
+          </extra>
+        </technique>
+        <extra type="material_overlay">
+          <technique profile="ADOBE">
+            <colors>
+              <diffuse_color>0 0 0</diffuse_color>
+              <specular_color>1 1 1</specular_color>
+              <reflectivity_factor>0</reflectivity_factor>
+              <shininess>0.2</shininess>
+              <roughness>0</roughness>
+            </colors>
+          </technique>
+        </extra>
+        <extra type="adobe_gp_material">
+          <technique profile="ADOBE">
+            <gp_material>
+              <is_gp_material>1</is_gp_material>
+            </gp_material>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>1</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="MAN1" name="MAN">
+      <mesh>
+        <source id="MAN1-positions">
+          <float_array id="MAN1-positions-array" count="852">816.594 401.478 -98.2798 815.435 400.319 -98.2798 815.863 418.072 -98.2798 815.435 415.536 -98.2798 809.528 401.195 -98.2798 810.151 400.319 -98.2798 808.691 401.31 -98.2798 807.981 400.319 -98.2798 802.339 418.117 -98.2798 802.723 415.797 -98.2798 802.722 400.319 -98.2798 801.563 401.478 -98.2798 800.403 400.319 -98.2798 801.563 417.34 -98.2798 800.403 418.5 -98.2798 803.268 417.451 -98.2798 804.024 418.5 -98.2798 809.196 402.935 -98.2798 815.174 417.582 -98.2798 814.517 418.5 -98.2798 816.594 417.341 -98.2798 817.754 418.5 -98.2798 817.754 400.319 -98.2798 809.188 400.952 -98.2798 834.779 401.578 -98.2798 833.914 400.319 -98.2798 832.616 407.023 -98.2798 831.794 405.825 -98.2798 823.504 406.805 -98.2798 824.191 405.825 -98.2798 822.194 400.319 -98.2798 821.363 401.503 -98.2798 819.64 400.319 -98.2798 827.278 417.545 -98.2798 826.622 418.5 -98.2798 828.56 417.526 -98.2798 829.214 418.5 -98.2798 836.655 400.319 -98.2798 827.862 416.59 -98.2798 826.483 415.256 -98.2798 827.48 414.981 -98.2798 825.953 413.735 -98.2798 826.978 413.383 -98.2798 823.275 406.667 -98.2798 824.885 407.785 -98.2798 831.049 407.784 -98.2798 827.862 416.59 -98.2798 827.167 417.469 -98.2798 828.532 417.545 -98.2798 832.446 406.805 -98.2798 823.285 406.652 -98.2798 832.604 407.031 -98.2798 851.026 401.471 -98.2798 850.409 400.319 -98.2798 839.953 417.593 -98.2798 840.86 414.606 -98.2798 840.859 400.319 -98.2798 839.706 401.472 -98.2798 838.553 400.319 -98.2798 839.706 417.346 -98.2798 838.553 418.5 -98.2798 840.407 417.351 -98.2798 841.021 418.5 -98.2798 851.48 401.228 -98.2798 850.57 404.225 -98.2798 850.571 418.5 -98.2798 851.724 417.347 -98.2798 852.877 418.5 -98.2798 851.724 401.472 -98.2798 852.877 400.319 -98.2798 815.435 400.319 -98.2798 815.435 415.536 -98.2798 815.435 400.319 -116.461 815.435 415.536 -116.461 815.435 415.536 -98.2798 810.151 400.319 -98.2798 815.435 415.536 -116.461 810.151 400.319 -116.461 810.151 400.319 -98.2798 807.981 400.319 -98.2798 810.151 400.319 -116.461 807.981 400.319 -116.461 807.981 400.319 -98.2798 802.723 415.797 -98.2798 807.981 400.319 -116.461 802.723 415.797 -116.461 802.723 415.797 -98.2798 802.722 400.319 -98.2798 802.723 415.797 -116.461 802.722 400.319 -116.461 802.722 400.319 -98.2798 800.403 400.319 -98.2798 802.722 400.319 -116.461 800.403 400.319 -116.461 800.403 400.319 -98.2798 800.403 418.5 -98.2798 800.403 400.319 -116.461 800.403 418.5 -116.461 800.403 418.5 -98.2798 804.024 418.5 -98.2798 800.403 418.5 -116.461 804.024 418.5 -116.461 804.024 418.5 -98.2798 809.196 402.935 -98.2798 804.024 418.5 -116.461 809.196 402.935 -116.461 809.196 402.935 -98.2798 814.517 418.5 -98.2798 809.196 402.935 -116.461 814.517 418.5 -116.461 814.517 418.5 -98.2798 817.754 418.5 -98.2798 814.517 418.5 -116.461 817.754 418.5 -116.461 817.754 418.5 -98.2798 817.754 400.319 -98.2798 817.754 418.5 -116.461 817.754 400.319 -116.461 817.754 400.319 -98.2798 815.435 400.319 -98.2798 817.754 400.319 -116.461 815.435 400.319 -116.461 833.914 400.319 -98.2798 831.794 405.825 -98.2798 833.914 400.319 -116.461 831.794 405.825 -116.461 831.794 405.825 -98.2798 824.191 405.825 -98.2798 831.794 405.825 -116.461 824.191 405.825 -116.461 824.191 405.825 -98.2798 822.194 400.319 -98.2798 824.191 405.825 -116.461 822.194 400.319 -116.461 822.194 400.319 -98.2798 819.64 400.319 -98.2798 822.194 400.319 -116.461 819.64 400.319 -116.461 819.64 400.319 -98.2798 826.622 418.5 -98.2798 819.64 400.319 -116.461 826.622 418.5 -116.461 826.622 418.5 -98.2798 829.214 418.5 -98.2798 826.622 418.5 -116.461 829.214 418.5 -116.461 829.214 418.5 -98.2798 836.655 400.319 -98.2798 829.214 418.5 -116.461 836.655 400.319 -116.461 836.655 400.319 -98.2798 833.914 400.319 -98.2798 836.655 400.319 -116.461 833.914 400.319 -116.461 827.862 416.59 -98.2798 827.48 414.981 -98.2798 826.978 413.383 -98.2798 824.885 407.785 -98.2798 827.862 416.59 -116.461 827.48 414.981 -116.461 826.978 413.383 -116.461 824.885 407.785 -116.461 824.885 407.785 -98.2798 831.049 407.784 -98.2798 824.885 407.785 -116.461 831.049 407.784 -116.461 831.049 407.784 -98.2798 827.862 416.59 -98.2798 831.049 407.784 -116.461 827.862 416.59 -116.461 827.862 416.59 -98.2798 827.862 416.59 -98.2798 827.862 416.59 -116.461 827.862 416.59 -116.461 850.409 400.319 -98.2798 840.86 414.606 -98.2798 850.409 400.319 -116.461 840.86 414.606 -116.461 840.86 414.606 -98.2798 840.859 400.319 -98.2798 840.86 414.606 -116.461 840.859 400.319 -116.461 840.859 400.319 -98.2798 838.553 400.319 -98.2798 840.859 400.319 -116.461 838.553 400.319 -116.461 838.553 400.319 -98.2798 838.553 418.5 -98.2798 838.553 400.319 -116.461 838.553 418.5 -116.461 838.553 418.5 -98.2798 841.021 418.5 -98.2798 838.553 418.5 -116.461 841.021 418.5 -116.461 841.021 418.5 -98.2798 850.57 404.225 -98.2798 841.021 418.5 -116.461 850.57 404.225 -116.461 850.57 404.225 -98.2798 850.571 418.5 -98.2798 850.57 404.225 -116.461 850.571 418.5 -116.461 850.571 418.5 -98.2798 852.877 418.5 -98.2798 850.571 418.5 -116.461 852.877 418.5 -116.461 852.877 418.5 -98.2798 852.877 400.319 -98.2798 852.877 418.5 -116.461 852.877 400.319 -116.461 852.877 400.319 -98.2798 850.409 400.319 -98.2798 852.877 400.319 -116.461 850.409 400.319 -116.461 816.594 401.478 -116.461 815.435 400.319 -116.461 815.863 418.072 -116.461 815.435 415.536 -116.461 809.528 401.195 -116.461 810.151 400.319 -116.461 808.691 401.31 -116.461 807.981 400.319 -116.461 802.339 418.117 -116.461 802.723 415.797 -116.461 802.722 400.319 -116.461 801.563 401.478 -116.461 800.403 400.319 -116.461 801.563 417.34 -116.461 800.403 418.5 -116.461 803.268 417.451 -116.461 804.024 418.5 -116.461 809.196 402.935 -116.461 815.174 417.582 -116.461 814.517 418.5 -116.461 816.594 417.341 -116.461 817.754 418.5 -116.461 817.754 400.319 -116.461 809.188 400.952 -116.461 834.779 401.578 -116.461 833.914 400.319 -116.461 832.616 407.023 -116.461 831.794 405.825 -116.461 823.504 406.805 -116.461 824.191 405.825 -116.461 822.194 400.319 -116.461 821.363 401.503 -116.461 819.64 400.319 -116.461 827.278 417.545 -116.461 826.622 418.5 -116.461 828.56 417.526 -116.461 829.214 418.5 -116.461 836.655 400.319 -116.461 827.862 416.59 -116.461 826.483 415.256 -116.461 827.48 414.981 -116.461 825.953 413.735 -116.461 826.978 413.383 -116.461 823.275 406.667 -116.461 824.885 407.785 -116.461 831.049 407.784 -116.461 827.862 416.59 -116.461 827.167 417.469 -116.461 828.532 417.545 -116.461 832.446 406.805 -116.461 823.285 406.652 -116.461 832.604 407.031 -116.461 851.026 401.471 -116.461 850.409 400.319 -116.461 839.953 417.593 -116.461 840.86 414.606 -116.461 840.859 400.319 -116.461 839.706 401.472 -116.461 838.553 400.319 -116.461 839.706 417.346 -116.461 838.553 418.5 -116.461 840.407 417.351 -116.461 841.021 418.5 -116.461 851.48 401.228 -116.461 850.57 404.225 -116.461 850.571 418.5 -116.461 851.724 417.347 -116.461 852.877 418.5 -116.461 851.724 401.472 -116.461 852.877 400.319 -116.461</float_array>
+          <technique_common>
+            <accessor source="#MAN1-positions-array" count="284" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="MAN1-normals">
+          <float_array id="MAN1-normals-array" count="852">0 0 1 0 0 1 0 0 0.998312 0 0 1 0 0 0.998312 0 0 0.998312 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0.998312 0 0 0.998312 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0.998312 0 0 0.998312 0 0 1 0 0 1 0 0 1 0 0 0.998312 0 0 1 0 0 1 0 0 0.998312 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0.998312 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0.998312 0 0 0.998312 0 0 1 0 0 1 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0.944675 -0.328009 0 0.944675 -0.328009 0 0.944675 -0.328009 0 0.944675 -0.328009 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -0.946848 -0.321682 0 -0.946848 -0.321682 0 -0.946848 -0.321682 0 -0.946848 -0.321682 0 1 -0.000029 0 1 -0.000029 0 1 -0.000029 0 1 -0.000029 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0.947385 0.314785 0 0.947385 0.314785 0 0.947385 0.314785 0 0.947385 0.314785 0 -0.946234 0.323483 0 -0.946234 0.323483 0 -0.946234 0.323483 0 -0.946234 0.323483 0 0 1 0 0 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 0 0 1 0 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -0.93161 -0.35879 0 -0.93161 -0.35879 0 -0.93161 -0.35879 0 -0.93161 -0.35879 0 -0.00002 -1 0 -0.00002 -1 0 -0.00002 -1 0 -0.00002 -1 0 0.938506 -0.340345 0 0.938506 -0.340345 0 0.938506 -0.340345 0 0.938506 -0.340345 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -0.933527 0.358507 0 -0.933527 0.358507 0 -0.933527 0.358507 0 -0.933527 0.358507 0 0 1 0 0 1 0 0 1 0 0 1 0 0.923926 0.378138 0 0.923926 0.378138 0 0.923926 0.378138 0 0.923926 0.378138 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0.971398 -0.230246 0 0.962477 -0.265075 0 0.944049 -0.324653 0 0.935128 -0.349517 0 0.971398 -0.230246 0 0.962477 -0.265075 0 0.944049 -0.324653 0 0.935128 -0.349517 0 0.000049 1 0 0.000049 1 0 0.000049 1 0 0.000049 1 0 -0.940308 -0.340325 0 -0.940308 -0.340325 0 -0.940308 -0.340325 0 -0.940308 -0.340325 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -0.829982 -0.554759 0 -0.829982 -0.554759 0 -0.829982 -0.554759 0 -0.829982 -0.554759 0 1 -0.000031 0 1 -0.000031 0 1 -0.000031 0 1 -0.000031 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0.82976 0.55509 0 0.82976 0.55509 0 0.82976 0.55509 0 0.82976 0.55509 0 -1 0.000031 0 -1 0.000031 0 -1 0.000031 0 -1 0.000031 0 0 1 0 0 1 0 0 1 0 0 1 0 1 0 0 1 0 0 1 0 0 1 0 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -1 0 0 -0.998312 0 0 -0.998312 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -0.998312 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -0.998312 0 0 -1 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -0.998312 0 0 -0.998312 0 0 -1 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#MAN1-normals-array" count="284" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="MAN1-texcoords">
+          <float_array id="MAN1-texcoords-array" count="568">0.308556 0.063771 0.28646 0 0.294612 0.976472 0.28646 0.836979 0.173883 0.048213 0.185766 0 0.157946 0.05453 0.144411 0 0.036894 0.978914 0.044199 0.851308 0.04419 0 0.022095 0.06377 0 0 0.022099 0.936215 0 1 0.05459 0.942326 0.069007 1 0.167565 0.143914 0.281477 0.949506 0.268969 1 0.308555 0.93623 0.330649 1 0.330649 0 0.167402 0.034839 0.655098 0.069256 0.638624 0 0.613883 0.368763 0.598209 0.302866 0.440232 0.356761 0.453321 0.302874 0.415264 0 0.399437 0.065152 0.366587 0 0.512153 0.947482 0.499649 1 0.536578 0.946414 0.549041 1 0.690847 0 0.523277 0.894967 0.497006 0.821573 0.516008 0.806468 0.486895 0.737945 0.506427 0.71856 0.43586 0.349191 0.466551 0.410644 0.584023 0.410627 0.523285 0.894967 0.510038 0.94329 0.536051 0.947484 0.610633 0.356744 0.436065 0.34833 0.613661 0.369188 0.964713 0.0634 0.952972 0 0.753709 0.95014 0.770983 0.785827 0.770974 0 0.748997 0.06343 0.72702 0 0.749002 0.936556 0.72702 1 0.762353 0.936807 0.774048 1 0.973376 0.050045 0.956038 0.214852 0.956046 1 0.978021 0.936576 1 1 0.978017 0.063441 1 0 1 1 0.956028 1 1 0 0.956028 0 0.956028 1 0.90948 1 0.956028 0 0.90948 0 0.90948 1 0.903209 1 0.90948 0 0.903209 0 0.903209 1 0.855973 1 0.903209 0 0.855973 0 0.855973 1 0.811248 1 0.855973 0 0.811248 0 0.811248 1 0.804547 1 0.811248 0 0.804547 0 0.804547 1 0.75201 1 0.804547 0 0.75201 0 0.75201 1 0.741547 1 0.75201 0 0.741547 0 0.741547 1 0.694153 1 0.741547 0 0.694153 0 0.694153 1 0.646621 1 0.694153 0 0.646621 0 0.646621 1 0.637268 1 0.646621 0 0.637268 0 0.637268 1 0.584731 1 0.637268 0 0.584731 0 0.584731 1 0.578031 1 0.584731 0 0.578031 0 0.578031 1 0.56098 1 0.578031 0 0.56098 0 0.56098 1 0.539011 1 0.56098 0 0.539011 0 0.539011 1 0.522084 1 0.539011 0 0.522084 0 0.522084 1 0.514704 1 0.522084 0 0.514704 0 0.514704 1 0.458425 1 0.514704 0 0.458425 0 0.458425 1 0.450936 1 0.458425 0 0.450936 0 0.450936 1 0.394169 1 0.450936 0 0.394169 0 0.394169 1 0.386251 1 0.394169 0 0.386251 0 0.386251 1 0.381472 1 0.376631 1 0.359361 1 0.386251 0 0.381472 0 0.376631 0 0.359361 0 0.359361 1 0.341549 1 0.359361 0 0.341549 0 0.341549 1 0.314487 1 0.341549 0 0.314487 0 0.314487 1 0.314486 1 0.314487 0 0.314486 0 0.314486 1 0.264828 1 0.314486 0 0.264828 0 0.264828 1 0.223543 1 0.264828 0 0.223543 0 0.223543 1 0.216878 1 0.223543 0 0.216878 0 0.216878 1 0.164341 1 0.216878 0 0.164341 0 0.164341 1 0.15721 1 0.164341 0 0.15721 0 0.15721 1 0.107582 1 0.15721 0 0.107582 0 0.107582 1 0.066332 1 0.107582 0 0.066332 0 0.066332 1 0.059667 1 0.066332 0 0.059667 0 0.059667 1 0.00713 1 0.059667 0 0.00713 0 0.00713 1 0 1 0.00713 0 0 0 0.308556 0.063771 0.28646 0 0.294612 0.976472 0.28646 0.836979 0.173883 0.048213 0.185766 0 0.157946 0.05453 0.144411 0 0.036894 0.978914 0.044199 0.851308 0.04419 0 0.022095 0.06377 0 0 0.022099 0.936215 0 1 0.05459 0.942326 0.069007 1 0.167565 0.143914 0.281477 0.949506 0.268969 1 0.308555 0.93623 0.330649 1 0.330649 0 0.167402 0.034839 0.655098 0.069256 0.638624 0 0.613883 0.368763 0.598209 0.302866 0.440232 0.356761 0.453321 0.302874 0.415264 0 0.399437 0.065152 0.366587 0 0.512153 0.947482 0.499649 1 0.536578 0.946414 0.549041 1 0.690847 0 0.523277 0.894967 0.497006 0.821573 0.516008 0.806468 0.486895 0.737945 0.506427 0.71856 0.43586 0.349191 0.466551 0.410644 0.584023 0.410627 0.523285 0.894967 0.510038 0.94329 0.536051 0.947484 0.610633 0.356744 0.436065 0.34833 0.613661 0.369188 0.964713 0.0634 0.952972 0 0.753709 0.95014 0.770983 0.785827 0.770974 0 0.748997 0.06343 0.72702 0 0.749002 0.936556 0.72702 1 0.762353 0.936807 0.774048 1 0.973376 0.050045 0.956038 0.214852 0.956046 1 0.978021 0.936576 1 1 0.978017 0.063441 1 0</float_array>
+          <technique_common>
+            <accessor source="#MAN1-texcoords-array" count="284" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="MAN1-vertices">
+          <input semantic="POSITION" source="#MAN1-positions"/>
+        </vertices>
+        <triangles material="MAN_Front_Inflation_Material" count="99">
+          <input semantic="VERTEX" source="#MAN1-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#MAN1-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#MAN1-texcoords" offset="0"/>
+          <p>2 3 20 5 3 4 6 7 23 8 9 15 10 9 11 12 10 11 13 14 11 15 16 8 23 17 6 19 17 18 20 21 2 22 21 0 1 22 0 26 27 24 28 29 49 30 29 31 32 30 31 33 34 47 35 36 48 24 37 26 25 37 24 40 38 39 41 42 39 43 44 41 45 44 49 48 46 35 47 38 33 54 55 61 56 55 57 58 56 57 59 60 57 61 62 54 63 64 52 65 64 66 67 65 66 68 69 66 52 53 63 20 3 0 1 0 3 4 3 18 2 18 3 7 5 23 4 23 5 15 9 6 7 6 9 11 9 13 8 13 9 12 11 14 16 14 8 13 8 14 6 17 15 16 15 17 18 17 4 23 4 17 21 19 2 18 2 19 20 0 21 25 24 27 29 27 49 27 26 49 51 49 26 31 29 50 28 50 29 47 34 39 39 34 41 34 32 41 41 32 43 43 32 50 31 50 32 36 34 48 33 48 34 37 36 26 26 36 51 35 51 36 47 39 38 40 39 42 42 41 44 49 44 28 44 43 28 50 28 43 35 46 51 46 45 51 49 51 45 38 46 33 48 33 46 61 55 52 53 52 55 57 55 59 54 59 55 58 57 60 62 60 54 59 54 60 52 64 61 62 61 64 66 64 68 63 68 64 67 66 69 53 69 63 68 63 69</p>
+        </triangles>
+        <triangles material="MAN_Front_Bevel_Material" count="1">
+          <input semantic="VERTEX" source="#MAN1-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#MAN1-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#MAN1-texcoords" offset="0"/>
+          <p>0 0 0</p>
+        </triangles>
+        <triangles material="MAN_Extrusion_Material" count="74">
+          <input semantic="VERTEX" source="#MAN1-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#MAN1-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#MAN1-texcoords" offset="0"/>
+          <p>72 70 71 72 71 73 76 74 75 76 75 77 80 78 79 80 79 81 84 82 83 84 83 85 88 86 87 88 87 89 92 90 91 92 91 93 96 94 95 96 95 97 100 98 99 100 99 101 104 102 103 104 103 105 108 106 107 108 107 109 112 110 111 112 111 113 116 114 115 116 115 117 120 118 119 120 119 121 124 122 123 124 123 125 128 126 127 128 127 129 132 130 131 132 131 133 136 134 135 136 135 137 140 138 139 140 139 141 144 142 143 144 143 145 148 146 147 148 147 149 152 150 151 152 151 153 158 154 155 158 155 159 159 155 156 159 156 160 160 156 157 160 157 161 164 162 163 164 163 165 168 166 167 168 167 169 172 170 171 172 171 173 176 174 175 176 175 177 180 178 179 180 179 181 184 182 183 184 183 185 188 186 187 188 187 189 192 190 191 192 191 193 196 194 195 196 195 197 200 198 199 200 199 201 204 202 203 204 203 205 208 206 207 208 207 209 212 210 211 212 211 213</p>
+        </triangles>
+        <triangles material="MAN_Back_Bevel_Material" count="1">
+          <input semantic="VERTEX" source="#MAN1-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#MAN1-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#MAN1-texcoords" offset="0"/>
+          <p>0 0 0</p>
+        </triangles>
+        <triangles material="MAN_Back_Inflation_Material" count="99">
+          <input semantic="VERTEX" source="#MAN1-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#MAN1-normals" offset="0"/>
+          <input semantic="TEXCOORD" source="#MAN1-texcoords" offset="0"/>
+          <p>217 216 234 217 219 218 221 220 237 223 222 229 223 224 225 224 226 225 228 227 225 230 229 222 231 237 220 231 233 232 235 234 216 235 236 214 236 215 214 241 240 238 243 242 263 243 244 245 244 246 245 248 247 261 250 249 262 251 238 240 251 239 238 252 254 253 256 255 253 258 257 255 258 259 263 260 262 249 252 261 247 269 268 275 269 270 271 270 272 271 274 273 271 276 275 268 278 277 266 278 279 280 279 281 280 283 282 280 267 266 277 217 234 214 214 215 217 217 218 232 232 216 217 219 221 237 237 218 219 223 229 220 220 221 223 223 225 227 227 222 223 225 226 228 228 230 222 222 227 228 231 220 229 229 230 231 231 232 218 218 237 231 233 235 216 216 232 233 214 234 235 238 239 241 241 243 263 240 241 263 263 265 240 243 245 264 264 242 243 248 261 253 248 253 255 246 248 255 246 255 257 246 257 264 264 245 246 248 250 262 262 247 248 250 251 240 250 240 265 265 249 250 253 261 252 253 254 256 255 256 258 258 263 242 257 258 242 242 264 257 260 249 265 259 260 265 265 263 259 260 252 247 247 262 260 269 275 266 266 267 269 269 271 273 273 268 269 271 272 274 274 276 268 268 273 274 278 266 275 275 276 278 278 280 282 282 277 278 280 281 283 283 267 277 277 282 283</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="DefaultScene">
+      <node id="MAN" name="MAN" type="NODE">
+        <matrix>1 0 0 -800.403 0 1 0 -400.319 0 0 1 107.37 0 0 0 1</matrix>
+        <instance_geometry url="#MAN1">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="MAN_Front_Inflation_Material" target="#MAN_Front_Inflation_Material"/>
+              <instance_material symbol="MAN_Front_Bevel_Material" target="#MAN_Front_Bevel_Material"/>
+              <instance_material symbol="MAN_Extrusion_Material" target="#MAN_Extrusion_Material"/>
+              <instance_material symbol="MAN_Back_Bevel_Material" target="#MAN_Back_Bevel_Material"/>
+              <instance_material symbol="MAN_Back_Inflation_Material" target="#MAN_Back_Inflation_Material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra type="pivot_use">
+          <technique profile="ADOBE">
+            <use_pivot>
+              <needPivot>0</needPivot>
+            </use_pivot>
+          </technique>
+        </extra>
+      </node>
+      <node id="Infinite_Light_1" name="Infinite_Light_1" type="NODE">
+        <lookat>826.093 605.08 169.213 826.019 604.487 168.412 0 1 0</lookat>
+        <instance_light url="#Infinite_Light_2"/>
+      </node>
+      <node id="Image_Based_Light_1" name="Image_Based_Light_1" type="NODE">
+        <instance_light url="#Image_Based_Light_2"/>
+      </node>
+      <node id="Default_Camera" name="Default_Camera" type="NODE">
+        <lookat>26.2028 9.06373 135.483 26.2028 9.06373 135.398 0 1 0</lookat>
+        <instance_camera url="#Default_Camera1"/>
+      </node>
+      <extra type="render_settings">
+        <technique profile="ADOBE">
+          <faces>
+            <render_faces>1</render_faces>
+            <face_style>4</face_style>
+            <face_color>1 1 1</face_color>
+            <texture_type>0</texture_type>
+            <anti_alias_quality>1</anti_alias_quality>
+            <show_reflections>1</show_reflections>
+            <show_refractions>1</show_refractions>
+            <show_shadows>1</show_shadows>
+            <remove_backfaces>0</remove_backfaces>
+          </faces>
+          <edges>
+            <render_edges>0</render_edges>
+            <line_style>1</line_style>
+            <line_color>0 0 0</line_color>
+            <line_width>1</line_width>
+            <crease_value>0</crease_value>
+            <remove_backface_lines>0</remove_backface_lines>
+            <remove_hidden_lines>1</remove_hidden_lines>
+          </edges>
+          <vertices>
+            <render_vertices>0</render_vertices>
+            <vertex_style>1</vertex_style>
+            <vertex_color>0 0 0</vertex_color>
+            <vertex_radius>1</vertex_radius>
+            <remove_backface_vertices>0</remove_backface_vertices>
+            <remove_hidden_vertices>1</remove_hidden_vertices>
+          </vertices>
+          <volumes>
+            <render_volume>0</render_volume>
+            <volume_style>2097152</volume_style>
+            <transfer_function0/>
+            <transfer_function1/>
+            <transfer_function2/>
+            <transfer_function3/>
+            <gradient_enhancement>1</gradient_enhancement>
+            <opacity_scale>1</opacity_scale>
+          </volumes>
+          <stereo>
+            <render_stereo>0</render_stereo>
+            <stereo_style>16384</stereo_style>
+            <stereo_offset>5</stereo_offset>
+            <stereo_line_spacing>40</stereo_line_spacing>
+          </stereo>
+          <internal>
+            <projection>0</projection>
+            <blend_unlit>0</blend_unlit>
+          </internal>
+        </technique>
+      </extra>
+      <extra type="background_image_type">
+        <technique profile="ADOBE">
+          <type>
+            <image_type>0</image_type>
+          </type>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#DefaultScene"/>
+  </scene>
+</COLLADA>
