@@ -14,7 +14,16 @@ public class GameLogic : MonoBehaviour {
 	public int PacmanX;
 	public int PacmanY;
 	public int pelletCount = 0;
-	
+	int prevrc = 0;
+	int rc = 0;
+	int colourOption = 4;
+	//public Vector3[] colourV = {new Vector3(255f,0f,0f), new Vector3(26f,255f,0f), new Vector3(4f,222f,255f), new Vector3(177f,34f,255f) , new Vector3(255f,130f,32f), new Vector3(114f,255f,199f)};
+	//public Color[] colour = new Color[] {(new Color(255,0,0)),(new Color(26,255,0)),(new Color(4,222,255)),(new Color(177,34,255)),(new Color(255,130,32)),(new Color(26,255,0))};
+
+	//
+	public Color[] colour8 = new Color[] {new Color(0.101196078f,1.0f,0.0f,1.0f), new Color(0.69411765f,0.13333333f,1.0f,1.0f), new Color(1.0f,0f,0f,1f), new Color(0.0156862745098f,0.87058823529412f,1f,1f), new Color(1f,0.4862745098f,0f,1f), new Color(0.56470588235294f,1f,0.78039215686275f,1f),new Color(1f,0.7960784314f,0.007843137255f),new Color(0,0.1960784314f,1f)};
+	//public Color[] colourRGB = new Color[]{new Color(1f,0f,0f,1f),new Color(0f,1f,0f,1f),new Color(0f,0f,1f,1f)};
+
 	public bool inky = false;
 	public int inkyX; 
 	public int inkyY; 
@@ -33,13 +42,28 @@ public class GameLogic : MonoBehaviour {
 	public bool clyde = false;
 	public int clydeX;
 	public int clydeY;
-
+	string currentOption = "option";
 		
 	// Use this for initialization
 	//bool trigger = true;
 
+	void LoadConfig(){
+		StreamReader ConfigInput = new StreamReader("config");
+		while((currentOption = ConfigInput.ReadLine())!= null){
+			if (currentOption == "Colour"){
+				currentOption = ConfigInput.ReadLine();
+				colourOption = int.Parse(currentOption);
+			}
+		}
+		
+		
+		ConfigInput.Close();
+	}
+
+
 	void Start () {
-	
+		//Debug.Log("colours is " + colour8.Length);
+		LoadConfig();
 		StreamReader FileInput = new StreamReader("filename.txt");
 		int IntitailHoldPointer = 0;
 
@@ -195,10 +219,56 @@ public class GameLogic : MonoBehaviour {
 					break;
 					
 				case 'w':
-
+					bool colourDifference = false;
 					GameObject W  = Instantiate(Resources.Load("Wall")) as GameObject;
+
+
+					
+					switch(colourOption){
+					
+					case 0://green
+						rc = 0;
+						break;
+					case 1://purple
+						rc = 1;
+						break;
+					case 2://red
+						rc = 2;
+						break;
+					case 3:// light blue
+						rc = 3;
+						break;
+					case 4:// orange
+						rc = 4;
+						break;
+					case 5:// Aqua
+						rc = 5;
+						break;
+					case 6: //yellow
+						rc = 6;
+						break;
+					case 7:// dark blue
+						rc = 7;
+						break;
+					default:// muliple colours
+						while(colourDifference == false){
+						rc = Random.Range(0,colour8.Length);
+						//Debug.Log("Colour index " + rc +"prev " + prevrc);
+						if(rc != prevrc){
+							colourDifference = true;
+						}
+					}
+						prevrc = rc;
+						break;
+					}
+
+					//Color makeColour = colour[1];
+					Debug.Log("colour "+rc+" "+ colour8[rc]);
+
+					W.renderer.material.color = (Color32)colour8[rc];
 					W.transform.position = Coordinates[xp,yp];
-					//W.renderer.material = Resources.Load("Blue") as Material;
+
+
 
 					GameObject floor2 = GameObject.CreatePrimitive(PrimitiveType.Cube); 
 					floor2.renderer.material = Resources.Load("Black") as Material;
@@ -297,7 +367,7 @@ public class GameLogic : MonoBehaviour {
 		}
 	}
 
-
+	
 
 	// Update is called once per frame
 	void Update () {

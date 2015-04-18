@@ -8,8 +8,17 @@ public class Ghost: MonoBehaviour {
 
 	public DataHolder DH;
 	public GameObject MC;
+
 	int GhostX;
 	int GhostY;
+
+	// new
+	int SpawnPosX;
+	int SpawnPosY;
+	public bool HasBeenEaten;
+	Material defaultTex;
+	Material blue;
+
 
 	bool up = true;
 	bool MovingUp;
@@ -193,10 +202,32 @@ public class Ghost: MonoBehaviour {
 		if (trigger == true) {
 			GhostX = DH.ClydeX;
 			GhostY = DH.ClydeY;
+			SpawnPosX = GhostX;
+			SpawnPosY = GhostY;
 			// get ghost!
+			blue = Resources.Load("Dblue") as Material;
+			defaultTex = renderer.material;
 
 
 			trigger = false;
+		}
+
+		if (DH.powerup == true) {
+			renderer.material = blue;
+		}
+
+		if (DH.powerup == false) {
+			renderer.material.color = new Color(1f,1f,1f,1f);
+			renderer.material = defaultTex;
+		}
+
+		if (HasBeenEaten == true) {
+
+			renderer.material = defaultTex;
+			GhostX = SpawnPosX;
+			GhostY = SpawnPosY;
+			transform.position = DH.StoredCoordinates[GhostX,GhostY];
+			HasBeenEaten = false;
 		}
 
 		if (moving == true){

@@ -3,10 +3,12 @@ using System.Collections;
 
 public class DataHolder : MonoBehaviour {
 	bool trigger = true; // set this Bool to false in update function to extecute post start initialisation 
-
+	public bool powerup = false;
+	public bool globalRespawn = false;
 	public int Score; // publily accesable to all classes should only be aceessd in the DataHolder
 	//int PrevScore; // holds the last recorded score
-
+	float powerPelletTimer = 15f;
+	float respawnTimer = 2f;
 	public int PacmanX; // PacMans initial positon
 	public int PacmanY;
 
@@ -16,6 +18,7 @@ public class DataHolder : MonoBehaviour {
 	// Store the positions of all Ghosts
 	public int InkyX;
 	public int InkyY;
+	public Fading fadeController2;
 
 	public int ClydeX;
 	public int ClydeY;
@@ -71,7 +74,7 @@ public class DataHolder : MonoBehaviour {
 			// access the values initialised by the GameLogic class
 			GameObject MC = GameObject.Find("Main Camera");
 			GameLogic GameLogic = MC.GetComponent<GameLogic>();
-
+			fadeController2 = MC.GetComponent<Fading>();
 			//hold the size of the Grid
 			xLength = GameLogic.xlength;
 			yLength = GameLogic.ylength;
@@ -119,8 +122,8 @@ public class DataHolder : MonoBehaviour {
 			}
 
 			if(GameLogic.pinky == true){
-				PinkyX = GameLogic.clydeX;
-				PinkyY = GameLogic.clydeY;
+				PinkyX = GameLogic.pinkyX;
+				PinkyY = GameLogic.pinkyY;
 				
 			}
 			//StoredCoordinates180 = rotateArray(StoredCoordinates,xLength,yLength,180);
@@ -139,7 +142,45 @@ public class DataHolder : MonoBehaviour {
 		if(lives  <= 0){
 			Application.LoadLevel("gameover");
 
-		} 
+		}
+
+		if(powerup == true){
+			Debug.Log("powered up");
+			Debug.Log("power pellet");
+			if(powerPelletTimer > 1){
+				powerup = true;
+				powerPelletTimer -= Time.deltaTime;
+			}else{
+				powerup = false;
+				Debug.Log("powered down");
+				powerPelletTimer = 15f;
+			}
+
+		}
+
+		if (globalRespawn == true) {
+			fadeController2.BeginFade(1);
+			if(respawnTimer > 1){
+				globalRespawn = true;
+				respawnTimer -= Time.deltaTime;
+
+				
+			}else{
+				globalRespawn = false;
+				Debug.Log("Go!");
+			
+				fadeController2.BeginFade(-1);
+				respawnTimer = 0.5f;
+			}
+
+
+		}
+
+		if(PelletCount <= 0){
+
+			Debug.Log("Maze Clear");
+			Application.LoadLevel("winning");
+		}
 
 	}
 
