@@ -9,13 +9,13 @@ public class CollisionDetector : MonoBehaviour {
 	public GameObject MC;
 	public Pellet PDS;
 	public PPellet PPS;
-	public Ghost G1S;
-	public GhostV2G1 G2S;
-	public GhostG3 G3S;
-	public GhostG4 G4S;
+	public Ghost G2S;
 	public GameObject PD;
 	public GameObject detectedGhost;
-	
+	bool starttimer = false;
+	float time = 2f;
+
+
 
 
 
@@ -26,7 +26,10 @@ public class CollisionDetector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (starttimer){
+			
+			time -= Time.deltaTime;
+		}
 	}
 
 void OnTriggerEnter(Collider other){
@@ -46,45 +49,35 @@ void OnTriggerEnter(Collider other){
 
 		}
 
+		if (other.tag == "SpecialItem"){
+			DH.Score += 300;
+			Destroy(other.gameObject);
+			DH.SpecialExists = false;
+			DH.ItemRespawnTimer = 10f;
+		}
 
-// if PacMan colides with a Ghost then deduct a live by dectementing the lives varible in DataHolder 
-		if(other.tag == "Ghost"){
+
+	}
+	
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.tag == "Ghost"){
 			if(DH.powerup == false){
-			DH.lives -= 1;
-			DH.globalRespawn = true;
+
+				DH.globalRespawn = true;
+
+				DH.lives -= 1;
+			
+				Debug.Log("Ghost ran into pacman");
 			}else{
-//				if("G1" == other.gameObject.name || "G1(Clone)" == other.gameObject.name){
-//					detectedGhost = other.gameObject;
-//					G1S = detectedGhost.GetComponent<Ghost>();
-//					G1S.HasBeenEaten = true;
-//					Debug.Log("G1 HAS BEEN EAT");
-//				}
-//
-//				if("G2" == other.gameObject.name || "G2(Clone)" == other.gameObject.name){
-//					detectedGhost = other.gameObject;
-//					G2S = detectedGhost.GetComponent<GhostV2G1>();
-//					G2S.HasBeenEaten = true;
-//					Debug.Log("G2 HAS BEEN EAT");
-//				}
-//
-//				if(G3 == other){
-//					detectedGhost = other.gameObject;
-//					G3S = detectedGhost.GetComponent<GhostG3>();
-//				}
-//
-//				if(G4 == other){
-//					detectedGhost = other.gameObject;
-//					G4S = detectedGhost.GetComponent<GhostG4>();
-//				}
+				
 				detectedGhost = other.gameObject;
-				G2S = detectedGhost.GetComponent<GhostV2G1>();
+				G2S = detectedGhost.GetComponent<Ghost>();
 				G2S.HasBeenEaten = true;
 				Debug.Log("GHOST HAS BEEN EAT");
 				DH.Score += 100;
+				
 			}
 		}
 	}
-	
-	
 	
 }

@@ -626,5 +626,7 @@ public class PacManV2_Experimental : MonoBehaviour {
 				StartCoroutine (rotateDown());		// start the coroutine to rotate pacman down
 			}
 		}
+
+//		Debug.Log ("Pacman is happy at " + pacmanX + " " + pacmanY);
 	}
 }

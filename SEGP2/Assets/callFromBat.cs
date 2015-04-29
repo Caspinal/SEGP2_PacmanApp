@@ -3,7 +3,7 @@ using System.Collections;
 using System.Diagnostics;
 public class callFromBat : MonoBehaviour {
 
-	// Use this for initialization
+	// execute the random map generator via external process Microsoft solution
 	void Start () {
 		ProcessStartInfo Bat = new ProcessStartInfo();
 		Bat.FileName = "Generate.bat";

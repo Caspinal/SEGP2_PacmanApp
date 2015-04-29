@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// collectable pellet class 
+
 public class Pellet : MonoBehaviour {
 	public bool HasBeenCollected = false;
 
@@ -18,7 +20,7 @@ public class Pellet : MonoBehaviour {
 
 		if (HasBeenCollected) {
 
-			Destroy(gameObject);
+			Destroy(gameObject); // destroy once collected 
 
 			DH.PelletCount = (DH.PelletCount -1);
 			DH.Score = (DH.Score + 10);

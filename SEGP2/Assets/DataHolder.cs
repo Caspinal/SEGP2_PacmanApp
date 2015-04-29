@@ -29,6 +29,19 @@ public class DataHolder : MonoBehaviour {
 	public int BlinkyX;
 	public int BlinkyY;
 
+	// store the position of special items
+	public int specialIX;
+	public int specialIY;
+
+	
+	public float ItemRespawnTimer = 5f;
+	public bool SpecialExists = false;
+	// set theese gameobjects in editor
+	public GameObject[] items = new GameObject[3];
+
+
+
+
 	//store the size of the Grid
 	public int xLength;
 	public int yLength;
@@ -38,32 +51,13 @@ public class DataHolder : MonoBehaviour {
 
 	// store the all coordinates
 	public Vector3[,] StoredCoordinates = new Vector3[0,0];
-	public Vector3[,] StoredCoordinates90;
-	public Vector3[,] StoredCoordinates180;
-	public Vector3[,] StoredCoordinates270;
-
 	public char[,] StoredRefCoordinates = new char[0,0];
-	public char[,] StoredRefCoordinates90;
-	public char[,] StoredRefCoordinates180;
-	public char[,] StoredRefCoordinates270;
 
 
-	// this function will rotate a MDA by 90 degrees
-	Vector3[,] rotateArray(Vector3[,] input, int xlength, int ylength){
 
-		Vector3[,] target = new Vector3[ylength,xlength];
-
-		for (int RY = 0; RY < ylength; RY++) {
-			for (int RX = 0; RX < xlength; RX++) {
-
-				target[RX,RY] = input[RY,ylength - RX -1];
-			}
-			}// end of RY
-		
-			return target;
-	} // end of rotatearray
 
 	void Start () {
+		lives = 3; // temp fix form memory retention bug
 	}
 	
 	// Update is called once per frame
@@ -82,7 +76,7 @@ public class DataHolder : MonoBehaviour {
 			PelletCount = GameLogic.pelletCount;
 			Debug.Log("this maze contains " + PelletCount + " pellets");
 
-			// access the grid coordinates and store for publix avalibilty
+			// access the grid coordinates and store for public avalibilty
 			StoredCoordinates = new Vector3[xLength,yLength];
 			StoredRefCoordinates = new char[xLength,yLength];
 
@@ -93,14 +87,12 @@ public class DataHolder : MonoBehaviour {
 					StoredRefCoordinates[j,i] = GameLogic.CoordinatesReference[j,i];
 				}
 			}
-			// initialise relitive arrays
-			StoredCoordinates90 = rotateArray(StoredCoordinates,xLength,yLength);
-			StoredCoordinates180 = rotateArray(StoredCoordinates90,yLength,xLength);
-			StoredCoordinates270 = rotateArray(StoredCoordinates180,xLength,yLength);
 
 			//hold the position of PacMan
 			PacmanY = GameLogic.PacmanY;
 			PacmanX = GameLogic.PacmanX;
+			specialIX = GameLogic.specialItemX;
+			specialIY = GameLogic.specialItemY;
 
 			// if the ghost is loaded then hold its position
 			if(GameLogic.inky == true){
@@ -126,66 +118,80 @@ public class DataHolder : MonoBehaviour {
 				PinkyY = GameLogic.pinkyY;
 				
 			}
-			//StoredCoordinates180 = rotateArray(StoredCoordinates,xLength,yLength,180);
 
-			Debug.Log(StoredCoordinates[0,0] + " Is now at 90 " + StoredCoordinates90[0,0] +" 180 "+ StoredCoordinates180[0,0] +" 270 "+ StoredCoordinates270[0,0]);
-
-			trigger = false;// set trigger to false to stop, the above should only exexte once
+			trigger = false;// set trigger to false to stop, the above should only execute once
 		}
 
-//		if Score has changed print Touch standard output
-//		if (Score > PrevScore) {
-//			Debug.Log("Current Score is: " + Score);
-//			PrevScore = Score;
-//		}
-		// If all 3 lives lost, load end of game scene
+		// if all lives deducted load gameover scene
 		if(lives  <= 0){
+			PlayerPrefs.SetInt("Player Score", Score);
 			Application.LoadLevel("gameover");
 
 		}
+
 
 		if(powerup == true){
 			Debug.Log("powered up");
 			Debug.Log("power pellet");
 			if(powerPelletTimer > 1){
 				powerup = true;
-				powerPelletTimer -= Time.deltaTime;
+				powerPelletTimer -= Time.deltaTime; // deducted the timer
 			}else{
-				powerup = false;
+				powerup = false; // set powerup to false to stop powerpellet effect
 				Debug.Log("powered down");
-				powerPelletTimer = 15f;
+				powerPelletTimer = 15f; // set timer to 15.0 seconds
 			}
 
 		}
 
 		if (globalRespawn == true) {
-			fadeController2.BeginFade(1);
+			fadeController2.BeginFade(1); // fade out scene
 			if(respawnTimer > 1){
-				globalRespawn = true;
-				respawnTimer -= Time.deltaTime;
+				globalRespawn = true; // start global respawn
+				respawnTimer -= Time.deltaTime; // deduct timer 
 
 				
 			}else{
 				globalRespawn = false;
 				Debug.Log("Go!");
 			
-				fadeController2.BeginFade(-1);
-				respawnTimer = 0.5f;
+				fadeController2.BeginFade(-1); //fade in scene
+				respawnTimer = 0.5f;// reset timer
 			}
 
 
 		}
 
 		if(PelletCount <= 0){
-
+			PlayerPrefs.SetInt("Player Score", Score); // store in player prefrences to avoid destruction on load
 			Debug.Log("Maze Clear");
-			Application.LoadLevel("winning");
+			Application.LoadLevel("winning");// load winning scene
 		}
+
+		if (SpecialExists == false) { //
+
+
+			if (ItemRespawnTimer < 1){
+
+				GameObject special = Instantiate(items[Random.Range(0,(items.Length))]) as GameObject;
+				
+				Debug.Log("I shall spawn at " +  specialIX + " " + specialIY);
+
+				special.transform.position = new Vector3(specialIX, 0 ,specialIY);
+				ItemRespawnTimer = 5f;
+				SpecialExists = true;
+			}else{
+				ItemRespawnTimer -= Time.deltaTime;
+
+			}
+
+		}
+
 
 	}
 
-	// Update score and lives GUI display
+	// Update score GUI display
 	void OnGUI() {
-		stringToEdit = GUI.TextField(new Rect(10, 10, 200, 20),("Score: " + Score +"Lives: " + lives), 25);
+		stringToEdit = GUI.TextField(new Rect(10, 10, 200, 20),("Score: " + Score), 25);
 	}
 }

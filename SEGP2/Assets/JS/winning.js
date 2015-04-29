@@ -2,7 +2,7 @@
 
 function Start () {
 	yield WaitForSeconds (3);
-	Application.LoadLevel("test");
+	Application.LoadLevel("Score");
 }
 
 function Update () {

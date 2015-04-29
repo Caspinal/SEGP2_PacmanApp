@@ -13,22 +13,21 @@ public class GameLogic : MonoBehaviour {
 	public int ylength;
 	public int PacmanX;
 	public int PacmanY;
+	public int specialItemX;
+	public int specialItemY;
 	public int pelletCount = 0;
 	int prevrc = 0;
 	int rc = 0;
 	int colourOption = 4;
 	public bool randomColour = false;
-	//public Vector3[] colourV = {new Vector3(255f,0f,0f), new Vector3(26f,255f,0f), new Vector3(4f,222f,255f), new Vector3(177f,34f,255f) , new Vector3(255f,130f,32f), new Vector3(114f,255f,199f)};
-	//public Color[] colour = new Color[] {(new Color(255,0,0)),(new Color(26,255,0)),(new Color(4,222,255)),(new Color(177,34,255)),(new Color(255,130,32)),(new Color(26,255,0))};
 
-	//
 	public Color[] colour8 = new Color[] {new Color(0.101196078f,1.0f,0.0f,1.0f), new Color(0.69411765f,0.13333333f,1.0f,1.0f), new Color(1.0f,0f,0f,1f), new Color(0.0156862745098f,0.87058823529412f,1f,1f), new Color(1f,0.4862745098f,0f,1f), new Color(0.56470588235294f,1f,0.78039215686275f,1f),new Color(1f,0.7960784314f,0.007843137255f),new Color(0,0.1960784314f,1f)};
-	//public Color[] colourRGB = new Color[]{new Color(1f,0f,0f,1f),new Color(0f,1f,0f,1f),new Color(0f,0f,1f,1f)};
+
 
 	public bool inky = false;
 	public int inkyX; 
 	public int inkyY; 
-	//temp value for testing
+	//workaround for door
 	public int makedoor =  3;
 
 	public bool blinky = false;
@@ -44,13 +43,11 @@ public class GameLogic : MonoBehaviour {
 	public int clydeX;
 	public int clydeY;
 	string currentOption = "option";
-		
-	// Use this for initialization
-	//bool trigger = true;
+
 
 	void LoadConfig(){
 
-		if (randomColour = false) {
+		//if (randomColour = false) {
 			StreamReader ConfigInput = new StreamReader ("config");
 			while ((currentOption = ConfigInput.ReadLine())!= null) {
 			if (currentOption == "Colour") {
@@ -59,10 +56,7 @@ public class GameLogic : MonoBehaviour {
 				}
 			}
 		ConfigInput.Close ();
-		}else if(true){
-			colourOption = Random.Range(0,8);
-
-		}
+	
 	}
 
 
@@ -133,7 +127,7 @@ public class GameLogic : MonoBehaviour {
 
 					break;
 
-				case 'i':
+				case 'l':
 					Coordinates[x,y] = new Vector3(x,0.184f,y);
 					CoordinatesReference[x,y] = charHold;
 
@@ -142,6 +136,15 @@ public class GameLogic : MonoBehaviour {
 					blinkyY = y;
 
 
+					break;
+
+
+				case 'i':
+
+					specialItemX = x;
+					specialItemY = y;
+					
+					
 					break;
 
 				case 'n':
@@ -184,15 +187,7 @@ public class GameLogic : MonoBehaviour {
 				case 'S':
 					Coordinates[x,y] = new Vector3(x,0,y);
 					CoordinatesReference[x,y] = charHold;
-					// temp fix to add door to maze
 
-//					if(makedoor == 2){
-//
-//					CoordinatesReference[x - 2,y -2] = 'S';
-//					CoordinatesReference[x - 3,y -2] = 'S';
-//						//makedoor = false;
-//					}
-//					makedoor--;
 					break;
 
 				default:
@@ -258,7 +253,6 @@ public class GameLogic : MonoBehaviour {
 					default:// muliple colours
 						while(colourDifference == false){
 						rc = Random.Range(0,colour8.Length);
-						//Debug.Log("Colour index " + rc +"prev " + prevrc);
 						if(rc != prevrc){
 							colourDifference = true;
 						}
@@ -267,8 +261,6 @@ public class GameLogic : MonoBehaviour {
 						break;
 					}
 
-					//Color makeColour = colour[1];
-					Debug.Log("colour "+rc+" "+ colour8[rc]);
 
 					W.renderer.material.color = (Color32)colour8[rc];
 					W.transform.position = Coordinates[xp,yp];
@@ -306,7 +298,7 @@ public class GameLogic : MonoBehaviour {
 
 					break;
 
-				case 'i': // Blinky
+				case 'l': // Blinky
 					
 					GameObject i  = Instantiate(Resources.Load("G4")) as GameObject;
 					i.transform.position = Coordinates[xp,yp];

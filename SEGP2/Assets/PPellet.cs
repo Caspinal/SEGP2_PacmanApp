@@ -8,21 +8,22 @@ public class PPellet : MonoBehaviour {
 	public GameObject MC;
 	
 	void Start () {
+		// get dataholder
 		 MC = GameObject.Find("Main Camera");
 		 DH = MC.GetComponent<DataHolder>();
 	}
 	
-	// UpdaDatate is called once per frame
+
 	void Update () {
 		
 
 		if (HasBeenCollected) {
-			DH.powerup = true;
-			Destroy(gameObject);
+			DH.powerup = true;// set bool in data holder
+			Destroy(gameObject); // remove pellet
 
-			DH.PelletCount = (DH.PelletCount -1);
-			DH.Score = (DH.Score + 50);
-			// add score decremnet pellet count
+			DH.PelletCount = (DH.PelletCount -1); // decrement pellet count
+			DH.Score = (DH.Score + 50);// increment scores 
+
 		}
 	}
 }

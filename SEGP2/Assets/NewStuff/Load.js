@@ -27,6 +27,11 @@ Application.LoadLevel("welcome");
 
 }
 
+function scores(){
+Application.LoadLevel("Score");
+
+}
+
 function Update () {
 
 //Application.loadLevel(Resources.Load());

@@ -14,5 +14,5 @@ restart();
 function restart(){
 	//After 3 seconds load the welcome screen to restart the game
 	yield WaitForSeconds (3);
-	Application.LoadLevel("welcome");
+	Application.LoadLevel("Score");
 }
